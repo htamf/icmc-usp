@@ -13,6 +13,7 @@ Simulador desenvolvido em **C** como projeto da disciplina de Introdução à Co
 dois jogadores e as jogadas via entrada padrão, valida cada jogada e ao final exibe o tabuleiro e anuncia o vencedor (ou empate).
 
 ## Formato de entrada
+```
 Joao
 *
 Maria
@@ -24,8 +25,9 @@ Maria
 5 4
 6 4
 4 1
-
+```
 ## Formato de saída
+```
 0 0 0 0 0 0 0
 0 0 0 0 0 0 0
 0 0 0 * 0 0 0
@@ -33,3 +35,4 @@ Maria
 0 * + + 0 * 0
 * + + + * * 0
 Joao ganhou !
+```
