@@ -34,7 +34,6 @@ int main () {
          }
      }
 
-
     //6. inciar jogo
     rodada = 0;
     espacos_sobrando = 42;
