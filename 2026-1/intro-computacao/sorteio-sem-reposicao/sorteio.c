@@ -1,5 +1,5 @@
 // Programa que calcula a probabilidade de se sortear uma bola
-// da cor alvo em um surteio sem reposicao 
+// da cor alvo em um sorteio sem reposicao 
 
 #include <stdio.h>
 #include <stdlib.h>
