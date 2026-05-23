@@ -19,3 +19,30 @@ Simulador desenvolvido em **C** como projeto da disciplina de Introdução à Pr
 realiza o cálculo da chance teórica, executa uma simulação estatística sem reposição e ao final valida se o resultado prático ficou dentro do esperado.
 
 ## Formato de entrada 1
+```
+3
+2 5 3
+1
+5 0.1
+```
+## Formato de saída 1
+```
+50.00%
+Valor esperado : 2
+Valor simulado : 3
+Simulacao dentro da margem de erro
+```
+## Formato de entrada 2
+```
+2
+1 2
+0
+2 0.0
+```
+## Formato de saída 2
+```
+33.33%
+Valor esperado : 0
+Valor simulado : 1
+Simulacao fora da margem de erro
+```
