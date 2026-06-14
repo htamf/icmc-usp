@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h> 
+
+// funcao que le uma funcao polnomial, armazena em f e imprime f
+double* leFuncao(int n) {
+    double *f;
+    int i;
+
+    // cria e preenche o vetor que representa a funcao f com os coeficientes
+    f = (double*) malloc((n+1) * sizeof(double));
+    
+    if (f == NULL) {
+        printf("Erro ao alocar memoria.");
+        return NULL;
+    }
+
+    for (i = 0; i <= n; i++) {
+        scanf("%lf", &f[i]);
+    }
+    if (f[0] == 0) {
+        free(f);
+        printf("Entrada invalida.");
+        return NULL;
+    }
+
+    // imprime f
+    printf("f(x) = (%g)x^%d", f[0], n);
+    for (i = 1; i <= n; i++) {
+        if (f[i] != 0) {
+            printf(" + (%g)x^%d", f[i], n-i);
+        }
+    }
+    printf("\n");
+
+    return f;
+}
+
+// funcao que calcula f'
+double* calculaDerivada(double *f, int n) {
+    double *df;
+    int i;
+
+    // tratando o caso da derivada de uma funcao constante (que eh zero)
+    if (n == 0) {
+        printf("f'(x) = (0)\n");
+        
+        df = (double*)malloc(1 * sizeof(double));
+        if (df == NULL) {
+            return NULL;
+        } 
+
+        df[0] = 0;
+        return df;
+    }
+
+    // cria e preenche um vetor de 1 grau menor que f
+    df = (double*)malloc(n * sizeof(double));
+
+    if (df == NULL) {
+        printf("Erro ao alocar memoria.");
+        return NULL;
+    }
+
+    for (i = 0; i < n; i++) {
+        df[i] = (n-i)*f[i];
+    }
+
+    // imprime df
+    printf("f'(x) = (%g)x^%d", df[0], n-1);
+    for (i = 1; i < n; i++) {
+        if (df[i] != 0) {
+            printf(" + (%g)x^%d", df[i], n-(1+i));
+        }
+    }
+    printf("\n");
+
+    return df;
+}
+
+// funcao que calcula o resultado da funcao em um ponto t
+double resultadoFuncao(double *f, int n, double t) {
+    double resultadoF = 0;
+    int i;
+
+    for (i = 0; i <= n; i++) {
+        resultadoF = resultadoF + f[i]*(pow(t, n-i));
+    }
+
+    return resultadoF;
+}
+
+// funcao que calcula o resultado da derivada em um ponto t
+double resultadoDerivada(double *df, int n, double t) {
+    double resultadoDf = 0;
+    int i;
+
+    for (i = 0; i < n; i++) {
+        resultadoDf = resultadoDf + df[i]*(pow(t, n-(1+i)));
+    }
+
+    return resultadoDf;
+}
+
+// funcao que calcula a reta tangente ao grafico de f no ponto (t,f(t))
+void retaTangente(double ft, double dft, double t) {
+    printf("y - (%g) = %g(x - (%g))\n",ft, dft, t);
+
+    return ;
+}
+
+// funcao principal
+int main() {
+    double t, *funcao, *derivada;
+    int n;
+
+    scanf("%lf %d", &t, &n);
+    if (n < 0) {
+        printf("Entrada invalida.");
+        return 1;
+    }
+
+    funcao = leFuncao(n); 
+    if (funcao == NULL) {
+        return -1;
+    }
+
+    derivada = calculaDerivada(funcao, n);
+    if (derivada == NULL) {
+        return -2;
+    }
+
+    // calcula f(t) e f'(t)
+    double ft = resultadoFuncao(funcao, n, t);
+    double dft;
+    if (n == 0) {
+        dft = 0;
+     } 
+     else {
+        dft = resultadoDerivada(derivada, n, t);
+     }
+
+    retaTangente(ft, dft, t);
+
+    free(funcao);
+    free(derivada);    
+
+    return 0;
+}
